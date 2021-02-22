@@ -4,6 +4,11 @@
 import sys
 import numpy
 import MeCab
+import subprocess
+
+cmd = 'echo `mecab-config --dicdir`"/mecab-ipadic-neologd"'
+mecab_path = (subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                           shell=True).communicate()[0]).decode('utf-8')
 
 '''
 usage: python wer.py [original_file.txt]  [target_file.txt]
@@ -204,7 +209,7 @@ def wer(r, h):
 
 def separateWords(lists):
     word_array=[]
-    tagger = MeCab.Tagger('-Ochasen')
+    tagger = MeCab.Tagger('-d {} -Ochasen'.format(mecab_path))
     tagger.parse("")
     node = tagger.parseToNode(lists).next
     while node.next:
