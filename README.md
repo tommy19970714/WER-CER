@@ -19,3 +19,5 @@ python wer.py [original_file.txt]  [target_file.txt]
 ```bash
 python cer.py [original_file.txt]  [target_file.txt]
 ```
+
+※ このレポジトリはkchan7/WER-CERからのフォークです。オリジナルからの差分は、MeCabの辞書をpathを自動で指定されるようになっています。
